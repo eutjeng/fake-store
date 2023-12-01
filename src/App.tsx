@@ -1,26 +1,24 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import { useProducts } from './hooks/useProducts';
+import { ProductList } from './components/ProductList';
+import { ThemeSwitcher } from './components/ThemeSwitcher';
+
+export const App: React.FC = () => {
+  const { products, error, loading } = useProducts();
+
+  console.log(products);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container mx-auto p-4">
+      <ThemeSwitcher />
+      {loading ? (
+        <div>Loading...</div>
+      ) : error ? (
+        <div>Error loading products</div>
+      ) : (
+        <ProductList products={products} />
+      )}
     </div>
   );
-}
-
-export default App;
+};
