@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
-const LS_THEME = 'theme';
-
-const getInitialTheme = () => {
-  const storedTheme = localStorage.getItem(LS_THEME);
-  if (storedTheme) {
-    return storedTheme;
-  } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    return 'dark';
-  } else {
-    return 'light';
-  }
-};
+import { getInitialTheme } from '../utils/getInitialTheme';
+import { LS_THEME } from '../utils/constants';
+import { Theme } from '../interfaces/Theme';
 
 const initialTheme = getInitialTheme();
 
@@ -19,22 +9,22 @@ export const ThemeSwitcher: React.FC = () => {
   const [theme, setTheme] = useState<string>(initialTheme);
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
+    setTheme(theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT);
   };
 
   useEffect(() => {
-    document.documentElement.classList.remove('light', 'dark');
+    document.documentElement.classList.remove(Theme.LIGHT, Theme.DARK);
     document.documentElement.classList.add(theme);
     localStorage.setItem(LS_THEME, theme);
   }, [theme]);
 
   return (
-    <div className="card__toggle">
+    <div className="flex items-center mr-5">
       <input
         id="themeSwitcher"
         className="ThemeToggle"
         type="checkbox"
-        checked={theme === initialTheme}
+        checked={theme === Theme.LIGHT}
         onChange={toggleTheme}
       />
     </div>

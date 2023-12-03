@@ -1,24 +1,17 @@
 import React from 'react';
 
-import { useProducts } from './hooks/useProducts';
 import { ProductList } from './components/ProductList';
-import { ThemeSwitcher } from './components/ThemeSwitcher';
+import { Header } from './components/Header';
+
+import { ProductFilterContextProvider } from './context/filter/ProductFilterContextProvider';
 
 export const App: React.FC = () => {
-  const { products, error, loading } = useProducts();
-
-  console.log(products);
-
   return (
-    <div className="container mx-auto p-4">
-      <ThemeSwitcher />
-      {loading ? (
-        <div>Loading...</div>
-      ) : error ? (
-        <div>Error loading products</div>
-      ) : (
-        <ProductList products={products} />
-      )}
-    </div>
+    <ProductFilterContextProvider>
+      <div className="min-h-screen mx-auto bg-gray-100 dark:bg-gray-800 cubic-bezier(0.3, 1.5, 0.7, 1) duration-300">
+        <Header />
+        <ProductList />
+      </div>
+    </ProductFilterContextProvider>
   );
 };
