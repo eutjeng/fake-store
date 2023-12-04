@@ -2,7 +2,7 @@ import { useContext } from 'react';
 
 import { API_URL, DEFAULT_CATEGORY } from '../utils/constants';
 import { ProductFilterContext } from '../context/filter/ProductFilterContext';
-import useFetch from './useFetch';
+import { useFetch } from './useFetch';
 import { Product } from '../interfaces/Product';
 
 const getApiUrl = (category?: string) => {

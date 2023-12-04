@@ -1,5 +1,5 @@
 import { API_URL } from '../utils/constants';
-import useFetch from './useFetch';
+import { useFetch } from './useFetch';
 
 export const useCategories = () => {
   const {
