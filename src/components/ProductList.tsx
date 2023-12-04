@@ -31,7 +31,7 @@ export const ProductList: React.FC = () => {
 
   return (
     <Container>
-      {products.map(product => (
+      {products?.map(product => (
         <ProductCard key={product.id} product={product} />
       ))}
     </Container>

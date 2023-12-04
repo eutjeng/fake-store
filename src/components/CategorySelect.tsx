@@ -10,7 +10,7 @@ export const CategorySelect: React.FC = () => {
     setCategory(e.target.value);
   };
 
-  if (!categories.length) return null;
+  if (!categories?.length) return null;
 
   return (
     <div className="relative inline-block text-gray-700 dark:text-white">
